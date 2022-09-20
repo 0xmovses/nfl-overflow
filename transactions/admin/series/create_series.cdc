@@ -1,4 +1,4 @@
-import AllDay from "../../../contracts/AllDay.cdc"
+import AllDay from 0xf8d6e0586b0a20c7
 
 transaction(name: String) {
     // local variable for the admin reference
@@ -14,11 +14,6 @@ transaction(name: String) {
         let id = self.admin.createSeries(
             name: name,
         )
-
-        log("====================================")
-        log("New Series: ".concat(name))
-        log("SeriesID: ".concat(id.toString()))
-        log("====================================")
-    }
+   }
 }
 
