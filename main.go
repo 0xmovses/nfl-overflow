@@ -1,7 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	. "github.com/bjartek/overflow"
+)
 
 func main() {
+	_ = WithNetwork("mainnet")
 	fmt.Println("Hello, overflow!")
 }
