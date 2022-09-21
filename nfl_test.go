@@ -42,7 +42,7 @@ func TestNFL(t *testing.T) {
 		WithArgs("seriesID", 1),
 		WithArgs("setID", 1),
 		WithArgs("playID", 1),
-		WithArgs("tier", "a-tier"),
+		WithArgs("tier", "Legendary"),
 		WithArgs("maxMintSize", 1),
 	).AssertSuccess(t)
 
@@ -50,4 +50,19 @@ func TestNFL(t *testing.T) {
 		WithArgs("recipientAddress", "account"),
 		WithArgs("editionID", 1),
 	).AssertSuccess(t)
+
+	editions, err := o.Script(
+		"editions/read_all_editions", WithSignerServiceAccount()).GetAsInterface()
+	if err != nil {
+		fmt.Printf("Error: %s\n", err)
+		t.Error(err)
+	}
+
+	fmt.Printf("Editions: %v\n", editions)
+
+	matchingEditions, err := o.Script("editions/get_editions_by_field", WithSignerServiceAccount(),
+		WithArgs("query", "Legendary"),
+	).GetAsInterface()
+
+	fmt.Printf("Matching Editions: %v\n", matchingEditions)
 }
